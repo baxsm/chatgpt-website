@@ -71,7 +71,7 @@ const handleSubmit = async (e) => {
     loader(messageDiv);
 
     // fetch data from api
-    const response = await fetch('https://chatgpt-backend.vercel.app', {
+    const response = await fetch('https://chatgpt-backend.vercel.app/chat', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
