@@ -24,18 +24,16 @@ app.post("/chat", async (req, res) => {
   try {
     const prompt = req.body.prompt;
     const response = await openai.chat.completions.create({
-      model: "openchat/openchat-7b:free",
+      model: "nousresearch/nous-capybara-7b:free",
       prompt: `${prompt}`,
-      temperature: 0.4,
       max_tokens: 3000,
-      top_p: 1,
-      frequency_penalty: 0.5,
-      presence_penalty: 0,
     });
+    console.log(response)
     res.status(200).send({
-      bot: response.data.choices[0].text,
+      bot: response.choices[0].text || response.choices[0].message,
     });
   } catch (error) {
+    console.log(error)
     res.status(500).send({ error });
   }
 });
